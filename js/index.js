@@ -8,7 +8,7 @@ function slashes(str) {
 
 async function logic(fileHandle) {
   lineSeparator = slashes(document.getElementById('lineSeparator').value);
-  columnSeparator = slashes(document.getElementById('columnSeparator'));
+  columnSeparator = slashes(document.getElementById('columnSeparator').value);
   timeGapMS = document.getElementById('timeGapSec').value * 1000;
 
   const avi = await getHTML5FileContent(fileHandle);
