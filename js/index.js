@@ -1,8 +1,12 @@
-const ONE_MINUTES = 60 * 1000;
-const columnSeparator = '  ';
-const lineSeparator = '\n';
+let timeGapMS = 60 * 1000;
+let columnSeparator = '  ';
+let lineSeparator = '\n';
 
 async function logic(fileHandle) {
+  lineSeparator = document.getElementById('lineSeparator').value;
+  columnSeparator = document.getElementById('columnSeparator').value;
+  timeGapMS = document.getElementById('timeGapSec').value * 1000;
+
   const avi = await getHTML5FileContent(fileHandle);
 
   const groups = transform(avi);
@@ -22,7 +26,7 @@ function transform(avi) {
 
   for (const { date, price, originalDate, e, i } of restDocs) {
     // console.log(date, lastDate)
-    if (date - lastDate < ONE_MINUTES) {
+    if (date - lastDate < timeGapMS) {
       groups[groups.length - 1].price += price;
     } else {
       lastDate = date;
