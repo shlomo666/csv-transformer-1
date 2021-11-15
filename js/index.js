@@ -2,9 +2,13 @@ let timeGapMS = 60 * 1000;
 let columnSeparator = '  ';
 let lineSeparator = '\n';
 
+function slashes(str) {
+  return str.replace(/\\n/g, '\n').replace(/\\t/g, '\t');
+}
+
 async function logic(fileHandle) {
-  lineSeparator = document.getElementById('lineSeparator').value;
-  columnSeparator = document.getElementById('columnSeparator').value;
+  lineSeparator = slashes(document.getElementById('lineSeparator').value);
+  columnSeparator = slashes(document.getElementById('columnSeparator'));
   timeGapMS = document.getElementById('timeGapSec').value * 1000;
 
   const avi = await getHTML5FileContent(fileHandle);
